@@ -1,22 +1,5 @@
 using System;
 
-class Circle
-{
-    private double _radius;
-    public void SetRadius(double radius)
-    {
-        _radius = radius;
-    }
-    public double GetRadius()
-    {
-        return _radius;
-    }
-    public double GetArea()
-    {
-        return Math.PI * _radius * _radius;
-    }
-
-}
 class Program
 {
     static void Main(string[] args)
@@ -29,6 +12,11 @@ class Program
 
         Circle myCircle2 = new Circle();
         myCircle2.SetRadius(20);
+
+        Cylinder myCylinder = new Cylinder();
+        myCylinder.SetHeight(10);
+        myCylinder.SetCircle(myCircle);
+        Console.WriteLine($"{myCylinder.GetVolume()}");
 
 
 
