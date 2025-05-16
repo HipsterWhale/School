@@ -5,10 +5,26 @@ class Program
 {
     static void Main(string[] args)
     {
-        string response = "0";
-        
-        Console.WriteLine("Welcome to the Journal Program!");
-        while (response != "5")
+    string response = "0";
+
+    List<string> _prompts = new List<string>()
+    {
+        "Who was the most interesting person I interacted with today?",
+        "What was the best part of my day?",
+        "How did I see the hand of the Lord in my life today?",
+        "What was the strongest emotion I felt today?",
+        "If I had one thing I could do over today, what would it be?"
+    };
+
+    Random rnd = new();
+
+    void GetRandomPrompt()
+    {
+        int index = rnd.Next(_prompts.Count);
+        Console.WriteLine(_prompts[index]);
+    }
+
+    while (response != "5")
         {
             Console.WriteLine("Please select one of the following choices");
             Console.WriteLine("1. Write");
@@ -22,7 +38,7 @@ class Program
             switch (response)
             {
                 case "1":
-                    Console.WriteLine("You selected Write.");
+                    GetRandomPrompt();
                     break;
 
                 case "2":
