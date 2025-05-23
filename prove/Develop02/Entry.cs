@@ -20,5 +20,5 @@ class Entry
     public DateTime GetDate()
     {return _date;}
 
-
+    
 }
