@@ -1,20 +1,22 @@
-public class Scipture
+public class Scripture
 {
-    private List<Word> words;
+    private List<Word> _words;
+    private bool _hidden;
 
 
-    public Scipture(string text)
+    public Scripture(string text)
     {
-        words = new List<Word>();
+        _words = new List<Word>();
         string[] wordArray = text.Split(' ');
         foreach (string word in wordArray)
         {
-            words.Add(new Word(word));
+            _words.Add(new Word(word));
         }
+        _hidden = false;
     }
     public void Print()
     {
-        foreach (Word word in words)
+        foreach (Word word in _words)
         {
             if (word.Hidden)
             {
@@ -28,18 +30,20 @@ public class Scipture
         Console.WriteLine();
     }
 
-    public void HideWords(int numberOfWords)
+    public void Hide_words(int numberOf_words)
     {
-        Random random = new Random();
-        int count = 0;
-        while (count < numberOfWords)
+        
+    }
+
+    public bool AllWordsHidden()
+    {
+        foreach (Word word in _words)
         {
-            int index = random.Next(words.Count);
-            if (!words[index].Hidden)
+            if (!word.Hidden)
             {
-                words[index].Hidden = true;
-                count++;
+                return false;
             }
         }
+        return true;
     }
 }

@@ -8,7 +8,7 @@ class Program
         Console.WriteLine("Welcome to the Scripture Memorization App!");
         Console.WriteLine("This app will help you memorize scripture by hiding words.");
 
-
+        
 
 
 
