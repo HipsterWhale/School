@@ -4,11 +4,18 @@ class Entry
 {
     private string _prompt;
     private string _response;
-    private DateTime _date = DateTime.Now;
+    private DateTime _date;
 
 
+    public Entry(string prompt)
+    {
+        _date = DateTime.Now;
+        _prompt = prompt;
+        Console.WriteLine($"{_prompt}");
+        _response = Console.ReadLine();
+    }
     public string GetPrompt()
-    {return _prompt;}
+    { return _prompt; }
     public void SetPrompt(string prompt)
     {_prompt = prompt;}
 
@@ -20,5 +27,10 @@ class Entry
     public DateTime GetDate()
     {return _date;}
 
-    
+    public void DisplayEntry()
+    {
+        Console.WriteLine($"Date: {_date.ToShortDateString()}");
+        Console.WriteLine($"Prompt: {_prompt}");
+        Console.WriteLine($"Response: {_response}");
+    }
 }

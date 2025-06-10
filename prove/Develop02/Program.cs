@@ -4,11 +4,23 @@ using System.Net;
 
 class Program
 {
+    private static string GetRandomPrompt()
+    {
+        string[] prompts = {
+            "What was the best part of your day?",
+            "What are you grateful for today?",
+            "Describe a challenge you faced and how you overcame it.",
+            "What is something new you learned today?",
+            "What are your goals for tomorrow?"
+        };
+        Random random = new Random();
+        return prompts[random.Next(prompts.Length)];
+    }
     static void Main(string[] args)
     {
-    string response = "0";
-
-    while (response != "5")
+        string response = "0";
+        Journal journal = new Journal();
+        while (response != "5")
         {
             Console.WriteLine("Please select one of the following choices");
             Console.WriteLine("1. Write");
@@ -22,19 +34,19 @@ class Program
             switch (response)
             {
                 case "1":
-                    Entry entry = new Entry();
+                    Entry entry = new Entry(GetRandomPrompt());
+                    journal.AddEntry(entry);
+                    break;
+                case "2":
+                    journal.DisplayJournal();
                     break;
 
-                case "2":
-                    DisplayJournal();
-                    break;
-                
                 case "3":
                     break;
 
                 case "4":
                     break;
-                
+
                 case "5":
                     Console.Write("Goodbye.");
                     break;
