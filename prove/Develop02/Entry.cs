@@ -12,6 +12,7 @@ class Entry
         _date = DateTime.Now;
         _prompt = prompt;
         Console.WriteLine($"{_prompt}");
+        Console.Write("> ");
         _response = Console.ReadLine();
     }
     public string GetPrompt()
