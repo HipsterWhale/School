@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
+using System.IO;
 
 class Program
 {
@@ -18,6 +19,7 @@ class Program
     }
     static void Main(string[] args)
     {
+        Console.WriteLine("Welcome to the Journal Program!");
         string response = "0";
         Journal journal = new Journal();
         while (response != "5")
@@ -45,6 +47,18 @@ class Program
                     break;
 
                 case "4":
+                    Console.Write("Enter a filename to save your journal: ");
+                    string filename = Console.ReadLine();
+                    try
+                    {
+                        journal.SaveToFile(filename);
+                        Console.WriteLine($"Journal saved to {filename}.");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error saving journal: {ex.Message}");
+                    }
+
                     break;
 
                 case "5":

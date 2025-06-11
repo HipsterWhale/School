@@ -18,7 +18,21 @@ class Journal
         }
     }
 
+    public void SaveToFile(string filename)
+    {
+        if (string.IsNullOrWhiteSpace(filename))
+        {
+            throw new ArgumentException("Filename cannot be null or empty.", nameof(filename));
+        }
 
+        using (StreamWriter writer = new StreamWriter(filename))
+        {
+            foreach (var entry in _entries)
+            {
+                writer.WriteLine($"{entry.GetDate().ToShortDateString()}|{entry.GetPrompt()}|{entry.GetResponse()}");
+            }
+        }
+    }
     public void DisplayJournal()
     {
         if (_entries == null || _entries.Count == 0)
