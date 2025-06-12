@@ -15,9 +15,9 @@ class Entry
         Program.Type("> ");
         _response = Console.ReadLine();
     }
-    public Entry(string prompt, string response)
+    public Entry(string prompt, string response, DateTime date)
     {
-        _date = DateTime.Now;
+        _date = date;
         _prompt = prompt;
         _response = response;
     }
@@ -33,6 +33,15 @@ class Entry
     
     public DateTime GetDate()
     {return _date;}
+
+    public void SetDate(DateTime date)
+    {
+        if (date > DateTime.Now)
+        {
+            throw new ArgumentException("Date cannot be in the future.", nameof(date));
+        }
+        _date = date;
+    }
 
     public void DisplayEntry()
     {

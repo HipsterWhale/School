@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.IO;
+using System.Diagnostics.Metrics;
 
 class Program
 {
@@ -9,21 +10,44 @@ class Program
     // These 2 methods are used to simulate typing text with a random delay
     public static void Type(string text = "")
     {
-        Random sleepTime = new Random();
+        int counter = 0;
+        int counter2 = 0;
+        Random myRandom = new Random();
         foreach (char c in text)
         {
-            Console.Write(c);
-            Thread.Sleep(sleepTime.Next(20, 80));
+
+            if (counter == myRandom.Next(2, 10))
+            {
+                Thread.Sleep(myRandom.Next(200, 300));
+                counter = 0; // Reset the counter after a longer pause
+            }
+
+            if (counter2 == myRandom.Next(25, 50))
+            {
+                char randomChar = (char)myRandom.Next(97, 123); // ASCII range for lowercase letters
+                Console.Write(randomChar);
+                Thread.Sleep(myRandom.Next(400, 800));
+                Console.Write($"\b ");
+                Thread.Sleep(myRandom.Next(400, 800));
+                Console.Write($"\b{c}");
+                Thread.Sleep(myRandom.Next(20, 80));
+                counter2 = 0; // Reset the counter for new lines
+            }
+            
+            else
+            {
+                Console.Write(c);
+                Thread.Sleep(myRandom.Next(20, 80));
+                counter2++;
+            }
+
+            if (c == ' ')
+            { counter++; }
         }
     }
     public static void TypeLine(string text = "")
     {
-        Random sleepTime = new Random();
-        foreach (char c in text)
-        {
-            Console.Write(c);
-            Thread.Sleep(sleepTime.Next(20, 80));
-        }
+        Type(text);
         Console.WriteLine(); // Move to the next line after typing the text
     }
 
@@ -42,7 +66,8 @@ class Program
     static void Main(string[] args)
     {
         Console.Clear();
-        TypeLine("Welcome to the Journal Program!");
+        TypeLine("Hi! My name is Todd, your personal journal assistant.");
+        TypeLine("I can help you write, save, and load your journal entries.");
         string response = "0";
         Journal journal = new Journal();
         while (response != "5")
@@ -78,7 +103,7 @@ class Program
                             DateTime date = DateTime.Parse(parts[0]);
                             string prompt = parts[1];
                             string responseText = parts[2];
-                            Entry loadedEntry = new Entry(prompt, responseText);;
+                            Entry loadedEntry = new Entry(prompt, responseText, date);;
                             journal.AddEntry(loadedEntry);
                         }
                         else
@@ -113,6 +138,5 @@ class Program
 
             }
         }
-
     }
 }
