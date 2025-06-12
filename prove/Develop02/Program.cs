@@ -5,6 +5,28 @@ using System.IO;
 
 class Program
 {
+
+    // These 2 methods are used to simulate typing text with a random delay
+    public static void Type(string text = "")
+    {
+        Random sleepTime = new Random();
+        foreach (char c in text)
+        {
+            Console.Write(c);
+            Thread.Sleep(sleepTime.Next(20, 80));
+        }
+    }
+    public static void TypeLine(string text = "")
+    {
+        Random sleepTime = new Random();
+        foreach (char c in text)
+        {
+            Console.Write(c);
+            Thread.Sleep(sleepTime.Next(20, 80));
+        }
+        Console.WriteLine(); // Move to the next line after typing the text
+    }
+
     private static string GetRandomPrompt()
     {
         string[] prompts = {
@@ -19,18 +41,19 @@ class Program
     }
     static void Main(string[] args)
     {
-        Console.WriteLine("Welcome to the Journal Program!");
+        Console.Clear();
+        TypeLine("Welcome to the Journal Program!");
         string response = "0";
         Journal journal = new Journal();
         while (response != "5")
         {
-            Console.WriteLine("Please select one of the following choices");
-            Console.WriteLine("1. Write");
-            Console.WriteLine("2. Display");
-            Console.WriteLine("3. Load");
-            Console.WriteLine("4. Save");
-            Console.WriteLine("5. Quit");
-            Console.Write("What would you like to do? ");
+            TypeLine("Please select one of the following choices");
+            TypeLine("1. Write");
+            TypeLine("2. Display");
+            TypeLine("3. Load");
+            TypeLine("4. Save");
+            TypeLine("5. Quit");
+            TypeLine("What would you like to do? ");
 
             response = Console.ReadLine();
             switch (response)
@@ -44,29 +67,48 @@ class Program
                     break;
 
                 case "3":
+                    Type("Enter a filename to load your journal: ");
+                    string loadFilename = Console.ReadLine();
+                    string[] lines = System.IO.File.ReadAllLines(loadFilename);
+                    foreach (string line in lines)
+                    {
+                        string[] parts = line.Split('|');
+                        if (parts.Length == 3)
+                        {
+                            DateTime date = DateTime.Parse(parts[0]);
+                            string prompt = parts[1];
+                            string responseText = parts[2];
+                            Entry loadedEntry = new Entry(prompt, responseText);;
+                            journal.AddEntry(loadedEntry);
+                        }
+                        else
+                        {
+                            TypeLine($"Invalid entry format: {line}");
+                        }
+                    }
                     break;
 
                 case "4":
-                    Console.Write("Enter a filename to save your journal: ");
+                    Type("Enter a filename to save your journal: ");
                     string filename = Console.ReadLine();
                     try
                     {
                         journal.SaveToFile(filename);
-                        Console.WriteLine($"Journal saved to {filename}.");
+                        TypeLine($"Journal saved to {filename}.");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Error saving journal: {ex.Message}");
+                        TypeLine($"Error saving journal: {ex.Message}");
                     }
 
                     break;
 
                 case "5":
-                    Console.Write("Goodbye.");
+                    Type("Goodbye.");
                     break;
 
                 default:
-                    Console.Write($"You entered: {response}. Please enter a value 1-5.");
+                    Type($"You entered: {response}. Please enter a value 1-5.");
                     break;
 
             }

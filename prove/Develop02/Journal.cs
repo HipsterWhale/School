@@ -14,7 +14,7 @@ class Journal
         }
         else
         {
-            Console.WriteLine("Cannot add a null entry.");
+            Program.TypeLine("Cannot add a null entry.");
         }
     }
 
@@ -37,14 +37,14 @@ class Journal
     {
         if (_entries == null || _entries.Count == 0)
         {
-            Console.WriteLine("No entries found.");
+            Program.TypeLine("No entries found.");
             return;
         }
 
         foreach (var entry in _entries)
         {
             entry.DisplayEntry();
-            Console.WriteLine();
+            Program.TypeLine();
         }
     }
     
