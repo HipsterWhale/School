@@ -10,8 +10,8 @@ public class Word
         Length = text.Length;
     }
 
-    public void Print()
+    public void Hide()
     {
-        Console.WriteLine($"Word: {Text}, Length: {Length}");
+        Hidden = true;
     }
 }

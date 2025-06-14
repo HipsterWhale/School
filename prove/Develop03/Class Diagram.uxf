@@ -4,13 +4,12 @@
 
 --
 + Scripture(string text)
-+ void Print()
++ static void Print()
 + void HideWords(int numberOfWords)
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>260</x><y>20</y><w>210</w><h>190</h></coordinates><panel_attributes>Word
 --
-+  _text: string
-+ _length : int
-+ _hidden : bool
+-  _text: string
+-  _hidden : bool
 
 --
 + Word(string text)

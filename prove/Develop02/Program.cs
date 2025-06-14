@@ -6,7 +6,6 @@ using System.Diagnostics.Metrics;
 
 class Program
 {
-
     // These 2 methods are used to simulate typing text with a random delay
     public static void Type(string text = "")
     {
