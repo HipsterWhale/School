@@ -22,13 +22,23 @@ class Program
             switch (choice)
             {
                 case "1":
-                    // Call method for breathing activity
+                    BreathingActivity breathingActivity = new BreathingActivity("Welcome to the Breathing Activity!",
+                    "This activity will help you relax by guiding you through slow, deep breaths.");
+                    breathingActivity.Start();
+                    // breathingActivity.Run();
+                    // breathingActivity.End();
                     break;
                 case "2":
-                    // Call method for reflecting activity
+                    ReflectingActivity reflectingActivity = new ReflectingActivity("","");
+                    // reflectingActivity.Start();
+                    // reflectingActivity.Run();
+                    // reflectingActivity.End();
                     break;
                 case "3":
-                    // Call method for listening activity
+                    // ListingActivity listingActivity = new ListingActivity();
+                    // listingActivity.Start();
+                    // listingActivity.Run();
+                    // listingActivity.End();
                     break;
                 case "4":
                     break;
