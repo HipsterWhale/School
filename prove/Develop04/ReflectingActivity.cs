@@ -1,5 +1,12 @@
 public class ReflectingActivity : Activity
 {
-    public ReflectingActivity(string welcomeMessage, string description) : base(welcomeMessage, description)
-    {}
+    public ReflectingActivity(string name, string description) : base(name, description)
+    {
+
+    }
+
+    public override void Run()
+    {
+        
+    }
 }

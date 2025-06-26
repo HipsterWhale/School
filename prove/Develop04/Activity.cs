@@ -1,17 +1,26 @@
 using System.Security.Cryptography.X509Certificates;
 
-public class Activity
+public abstract class Activity
 {
-    private string _welcomeMessage;
+    private string _name;
     private string _description;
     private int _duration;
-    private string _endMessage;
-    private string _activityName;
+    private int _activityTimer;
+    public abstract void Run();
 
-    public Activity(string welcomeMessage, string description)
+    public Activity(string name, string description)
     {
-        _welcomeMessage = welcomeMessage;
+        _name = name;
         _description = description;
+        _activityTimer = 0;
+    }
+    public int GetActivityTimer()
+    {
+        return _activityTimer;
+    }
+    public void SetActivityTimer(int activityTimer)
+    {
+        _activityTimer = activityTimer;
     }
     public int GetDuration()
     {
@@ -22,11 +31,6 @@ public class Activity
         _duration = duration;
     }
 
-    public string GetWelcomeMessage()
-    {
-        return _welcomeMessage;
-    }
-
     public string GetDescription()
     {
         return _description;
@@ -34,9 +38,10 @@ public class Activity
 
     public void Start()
     {
-        Console.WriteLine(_welcomeMessage);
+        Console.Clear();
+        Console.WriteLine($"Welcome to the {_name} Activity.");
         Console.WriteLine(_description);
-        Console.Write("Enter the duration in seconds: ");
+        Console.Write("How long, in seconds, would you like for your session? ");
         if (int.TryParse(Console.ReadLine(), out int duration) && duration > 0)
         {
             SetDuration(duration);
@@ -49,13 +54,20 @@ public class Activity
         Console.Clear();
         Console.WriteLine("Get Ready...");
         spinner();
-        Console.WriteLine();
+        Console.Clear();
     }
+
+    public void End()
+    {
+        Console.WriteLine($"\nWell done!!\n\nYou have completed {_duration} seconds of the {_name} activity.");
+        spinner();
+    }
+
         public static void spinner()
-        {
+    {
         int counter = 0;
         int sleepTime = 100;
-        
+
         while (counter < 6)
         {
 

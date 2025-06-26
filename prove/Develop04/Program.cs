@@ -2,13 +2,9 @@
 
 class Program
 {
-    static void Main(string[] args)
+        public static void DisplayMenu()
     {
-        DisplayMenu(); // Call the method from Main
-    }
-
-    static void DisplayMenu()
-    {
+        Console.Clear();
         string choice = "";
         while (choice != "1" && choice != "2" && choice != "3" && choice != "4")
         {
@@ -22,23 +18,26 @@ class Program
             switch (choice)
             {
                 case "1":
-                    BreathingActivity breathingActivity = new BreathingActivity("Welcome to the Breathing Activity!",
+                    BreathingActivity breathingActivity = new BreathingActivity("Breathing",
                     "This activity will help you relax by guiding you through slow, deep breaths.");
                     breathingActivity.Start();
-                    // breathingActivity.Run();
-                    // breathingActivity.End();
+                    breathingActivity.Run();
+                    breathingActivity.End();
+                    DisplayMenu();
                     break;
                 case "2":
-                    ReflectingActivity reflectingActivity = new ReflectingActivity("","");
-                    // reflectingActivity.Start();
-                    // reflectingActivity.Run();
-                    // reflectingActivity.End();
+                    ReflectingActivity reflectingActivity = new ReflectingActivity("Reflecting", "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.");
+                    reflectingActivity.Start();
+                    reflectingActivity.Run();
+                    reflectingActivity.End();
+                    DisplayMenu();
                     break;
                 case "3":
-                    // ListingActivity listingActivity = new ListingActivity();
-                    // listingActivity.Start();
-                    // listingActivity.Run();
-                    // listingActivity.End();
+                    ListingActivity listingActivity = new ListingActivity("Listing", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
+                    listingActivity.Start();
+                    listingActivity.Run();
+                    listingActivity.End();
+                    DisplayMenu();
                     break;
                 case "4":
                     break;
@@ -48,4 +47,10 @@ class Program
             }
         }
     }
+    
+    static void Main(string[] args)
+    {
+        DisplayMenu();
+    }
+
 }
