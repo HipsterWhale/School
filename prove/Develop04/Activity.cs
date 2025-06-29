@@ -39,9 +39,9 @@ public abstract class Activity
     public void Start()
     {
         Console.Clear();
-        Console.WriteLine($"Welcome to the {_name} Activity.");
+        Console.WriteLine($"Welcome to the {_name} Activity.\n");
         Console.WriteLine(_description);
-        Console.Write("How long, in seconds, would you like for your session? ");
+        Console.Write("\nHow long, in seconds, would you like for your session? ");
         if (int.TryParse(Console.ReadLine(), out int duration) && duration > 0)
         {
             SetDuration(duration);
@@ -63,10 +63,12 @@ public abstract class Activity
         spinner();
     }
 
-        public static void spinner()
+        public static void spinner(int times = 1)
     {
-        int counter = 0;
-        int sleepTime = 100;
+        for (int t = 0; t < times; t++)
+        {
+            int counter = 0;
+            int sleepTime = 100;
 
         while (counter < 6)
         {
@@ -100,9 +102,10 @@ public abstract class Activity
 
                     Thread.Sleep(sleepTime * 2);
                 }
-                Console.Write("   "); // Clear the spinner
-                Console.Write("\b\b\b"); // Move back to the start of the spinner
+                Console.Write("   \b\b\b"); // Clear the spinner
+                }
             }
+            
 
         }
 
