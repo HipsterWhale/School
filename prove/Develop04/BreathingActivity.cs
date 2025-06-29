@@ -3,12 +3,10 @@ using System.Globalization;
 
 public class BreathingActivity : Activity
 {
-    private int counter;
     private int _respMiliSeconds;
     public BreathingActivity(string name, string description) : base(name, description)
     {
         _respMiliSeconds = 5000;
-        counter = 0;
     }
 
 
