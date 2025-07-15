@@ -1,0 +1,27 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>310</x><y>290</y><w>210</w><h>190</h></coordinates><panel_attributes>&lt;&lt;EternalGoal&gt;&gt;
+
+--
+
+--
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>180</x><y>30</y><w>210</w><h>190</h></coordinates><panel_attributes>&lt;&lt;Goal&gt;&gt;
+
+--
+- _name : string
+- _description : string
+- _points : int
+--
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>60</x><y>290</y><w>210</w><h>190</h></coordinates><panel_attributes>&lt;&lt;ListGoal&gt;&gt;
+
+--
+
+--
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>510</x><y>30</y><w>210</w><h>190</h></coordinates><panel_attributes>&lt;&lt;Program&gt;&gt;
+
+--
+
+--
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>210</y><w>150</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;130;80</additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>210</y><w>170</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;80</additional_attributes></element></diagram>
